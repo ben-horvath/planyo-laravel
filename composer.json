@@ -1,6 +1,6 @@
 {
     "name": "ben-horvath/planyo-laravel",
-    "description": "A laravel package to handle the Planyo API.",
+    "description": "A Laravel package to handle the Planyo API.",
     "license": "MIT",
     "authors": [
         {
