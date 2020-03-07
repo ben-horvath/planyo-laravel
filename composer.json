@@ -1,0 +1,15 @@
+{
+    "name": "ben-horvath/planyo-laravel",
+    "description": "A laravel package to handle the Planyo API.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ben Horvath",
+            "email": "ben@meetbenhorvath.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^5.0"
+    }
+}
