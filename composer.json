@@ -21,5 +21,12 @@
         "psr-4": {
             "benhorvath\\PlanyoLaravel\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "benhorvath\\PlanyoLaravel\\PlanyoLaravelServiceProvider"
+            ]
+        }
     }
 }
