@@ -8,7 +8,10 @@
             "email": "ben@meetbenhorvath.com"
         }
     ],
-    "require": {},
+    "require": {
+        "guzzlehttp/guzzle": "^6.5",
+        "illuminate/support": "^7.0"
+    },
     "require-dev": {
         "orchestra/testbench": "^5.0"
     },
