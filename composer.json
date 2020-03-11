@@ -9,11 +9,11 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^6.5",
-        "illuminate/support": "^7.0"
+        "guzzlehttp/guzzle": "^6.5"
     },
     "require-dev": {
-        "orchestra/testbench": "^5.0"
+        "orchestra/testbench": "^5.0",
+        "donatj/mock-webserver": "^2.1"
     },
     "autoload": {
         "psr-4": {

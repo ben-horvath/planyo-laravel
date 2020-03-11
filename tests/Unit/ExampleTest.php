@@ -2,9 +2,7 @@
 
 namespace benhorvath\PlanyoLaravel\Tests;
 
-use Orchestra\Testbench\TestCase;
-
-class ExampleUnitTest extends TestCase
+class ExampleUnitTest extends TestCaseWithWebServer
 {
     /**
      * A basic test example.
@@ -13,6 +11,8 @@ class ExampleUnitTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $planyo = $this->app->make('planyo');
+
+        $this->assertTrue($planyo->isWorking());
     }
 }
