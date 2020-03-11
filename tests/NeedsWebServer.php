@@ -3,7 +3,6 @@
 namespace benhorvath\PlanyoLaravel\Tests;
 
 use donatj\MockWebServer\MockWebServer;
-use donatj\MockWebServer\Response;
 
 trait NeedsWebServer
 {
@@ -15,7 +14,6 @@ trait NeedsWebServer
 		self::$server = new MockWebServer();
 		self::$server->start();
         putenv('PLANYO_HOST=' . self::$server->getServerRoot());
-		self::$server->setResponseOfPath('/rest', new Response('mock response body'));
 	}
 
     public static function tearDownAfterClass(): void
