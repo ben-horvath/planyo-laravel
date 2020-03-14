@@ -3,6 +3,7 @@
 namespace benhorvath\PlanyoLaravel;
 
 use Illuminate\Support\ServiceProvider;
+use GuzzleHttp\Client as GuzzleClient;
 
 class PlanyoLaravelServiceProvider extends ServiceProvider
 {
@@ -15,11 +16,23 @@ class PlanyoLaravelServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('planyo', function() {
-            return new Planyo(
+        $this->app->bind('httpClient', function($app) {
+            return new GuzzleClient();
+        });
+
+        $this->app->bind('PlanyoAPI', function($app) {
+            return new PlanyoAPI(
                 config('planyo.key'),
                 config('planyo.site_id'),
                 config('planyo.bookable_days')
+            );
+        });
+
+        $this->app->bind('Planyo', function($app) {
+            return new Planyo(
+                config('planyo.site_id'),
+                config('planyo.bookable_days'),
+                $app->make('PlanyoAPI')
             );
         });
     }

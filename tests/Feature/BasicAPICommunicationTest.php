@@ -2,25 +2,37 @@
 
 namespace benhorvath\PlanyoLaravel\Tests;
 
-use donatj\MockWebServer\Response;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
 
-class BasicAPICommunicationTest extends TestCaseWithWebServer
+class BasicAPICommunicationTest extends TestCase
 {
     /**
      * Test the API handler's feature that checks if the communication
      * between the handler and Planyo's own API is working.
      * 
      * This test case test the handler for positive response from Planyo.
-     *
-     * @return void
+     * 
+     * @test
      */
-    public function testBasicAPICommunicationPositive()
+    public function testAPICommunicationPositive()
     {
-        $planyo = $this->app->make('planyo');
+        /* Arrange */
+        $mockHandler = new MockHandler([
+            new Response(200)
+        ]);
 
-        self::$server->setResponseOfPath('/rest', new Response(''));
+        $this->mockHttpClient($mockHandler);
 
-        $this->assertTrue($planyo->isWorking());
+        $planyo = resolve('Planyo');
+
+
+        /* Act */
+        $isWorking = $planyo->isWorking();
+
+
+        /* Assert */
+        $this->assertTrue($isWorking);
     }
 
     /**
@@ -28,15 +40,26 @@ class BasicAPICommunicationTest extends TestCaseWithWebServer
      * between the handler and Planyo's own API is working.
      * 
      * This test case test the handler for negative response from Planyo.
-     *
-     * @return void
+     * 
+     * @test
      */
-    public function testBasicAPICommunicationNegative()
+    public function testAPICommunicationNegative()
     {
-        $planyo = $this->app->make('planyo');
+        /* Arrange */
+        $mockHandler = new MockHandler([
+            new Response(500)
+        ]);
 
-        self::$server->setResponseOfPath('/rest', new Response('', [], 404));
+        $this->mockHttpClient($mockHandler);
 
-        $this->assertFalse($planyo->isWorking());
+        $planyo = resolve('Planyo');
+
+
+        /* Act */
+        $isWorking = $planyo->isWorking();
+
+
+        /* Assert */
+        $this->assertFalse($isWorking);
     }
 }
